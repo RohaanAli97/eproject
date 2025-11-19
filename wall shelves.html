@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wall Shelves | Jensen Decors</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      background: linear-gradient(to right, #eef2f3, #dfe9f3);
+      color: #2c3e50;
+      padding-top: 110px;
+      overflow-x: hidden;
+    }
+
+    /* ---------- NAVBAR  ---------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: transparent;
+      padding: 20px 0;
+      z-index: 1100;
+      transition: 0.4s;
+    }
+
+    .navbar.scrolled {
+      background: #fff !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 10px 0;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: #d4af37 !important;
+      font-family: cursive;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand img {
+      height: 60px;
+      width: 60px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+
+    .nav-link {
+      color: #fff !important;
+      font-weight: 600;
+      margin: 0 12px;
+    }
+
+    .navbar.scrolled .nav-link {
+      color: #000 !important;
+    }
+
+    .nav-link:hover {
+      color: #d4af37 !important;
+    }
+
+    .signup-btn {
+      padding: 10px 22px;
+      background-color: #000;
+      border: none;
+      border-radius: 30px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .signup-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* ---------- FLOATING CART ICON ---------- */
+    #cartIcon {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      background: #000;
+      color: #fff;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      z-index: 1300;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+
+    #cartIcon .count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #ff6347;
+      color: #fff;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      font-size: 13px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    .bump {
+      animation: bump 0.3s;
+    }
+
+    @keyframes bump {
+      50% {
+        transform: scale(1.3);
+      }
+    }
+
+    /* ---------- CARDS ---------- */
+    .shelf-container {
+      width: 90%;
+      margin: 40px auto;
+    }
+
+    .shelf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .flip-card {
+      perspective: 1000px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .flip-card-inner {
+      width: 100%;
+      height: 400px;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+      border-radius: 16px;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      backface-visibility: hidden;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .flip-card-front {
+      background: #fff;
+    }
+
+    .flip-card-front img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .flip-card-front .info {
+      padding: 15px;
+    }
+
+    .flip-card-front h3 {
+      margin: 5px 0;
+      font-size: 1.3rem;
+    }
+
+    .flip-card-front p {
+      color: #666;
+    }
+
+    .price {
+      color: #ff6347;
+      font-weight: 700;
+    }
+
+    .flip-card-back {
+      background: linear-gradient(145deg, #1a1a1a, #000);
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .flip-card-back button {
+      background: #ff6347;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      color: #fff;
+      margin: 8px 0;
+      font-weight: 600;
+    }
+
+    /* ---------- DRAWER ---------- */
+    #cartDrawer {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 350px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2);
+      z-index: 1400;
+      transition: right 0.4s;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    #cartDrawer.open {
+      right: 0;
+    }
+
+    #drawerOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: none;
+      z-index: 1300;
+    }
+
+    #drawerOverlay.show {
+      display: block;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      color: #ff6347;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* ALERT */
+    #cartAlert {
+      position: fixed;
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4BB543;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 40px;
+      display: none;
+      z-index: 1500;
+      font-weight: 600;
+    }
+
+    /* MODAL PRODUCT */
+    #productModal img {
+      width: 100%;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 50px 0 20px;
+      margin-top: 60px;
+    }
+
+    footer h5 {
+      color: #d4af37;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      border-top: 1px solid #444;
+      padding-top: 15px;
+    }
+
+    /* SIGNUP MODAL */
+    .modal-content.signup {
+      background: linear-gradient(135deg, #ffffff, #ffe6e6);
+      padding: 30px;
+      border-radius: 20px;
+      width: 400px;
+      margin: auto;
+    }
+
+    .modal-content.signup input,
+    .modal-content.signup textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .modal-content.signup button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 30px;
+      background: linear-gradient(270deg, #795f5f, #f94d6a, #09bb30);
+      color: #fff;
+      border: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CART ICON -->
+  <div id="cartIcon">🛒<div class="count">0</div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img src="imges/logo2.html" alt="Logo">Jensen Decors</a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about2.html">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Categories</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="metal wall art.html">Metal Wall Art</a></li>
+              <li><a class="dropdown-item" href="photo frame art.html">Photo Frame Art</a></li>
+              <li><a class="dropdown-item" href="mirror.html">Mirror Art</a></li>
+              <li><a class="dropdown-item" href="wall shelves.html">Wall Shelves</a></li>
+              <li><a class="dropdown-item" href="wall mounted animal.html">Wall mounted animal</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="contactus.html">Contact</a></li>
+        </ul>
+        <button class="signup-btn ms-3" id="openModal">Sign Up</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SHELVES -->
+  <div class="shelf-container">
+    <div class="shelf-grid">
+
+      <div class="flip-card" data-name="Wooden Shelf" data-price="$80" data-desc="Elegant wooden shelf for living room."
+        data-img="imges/wallpaper1.png">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="imges/wall.shelvs6.html.jpg" alt="Wooden Shelf">
+            <div class="info">
+              <h3>Wooden Shelf</h3>
+              <p>Elegant wooden shelf for living room.</p>
+              <div class="price">$80</div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <button class="view-btn">View Details</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-name="Modern Shelf" data-price="$85" data-desc="Stylish shelf to decorate your wall."
+        data-img="imges/wallpaper2.png">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="imges/wall.shelvs5.html.jpg" alt="Modern Shelf">
+            <div class="info">
+              <h3>Modern Shelf</h3>
+              <p>Stylish shelf to decorate your wall.</p>
+              <div class="price">$85</div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <button class="view-btn">View Details</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-name="Metal Shelf" data-price="$150"
+        data-desc="Durable metal shelf for office or home." data-img="imges/wallpaper3.png">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="imges/wall.shelvs4.html.jpg" alt="Metal Shelf">
+            <div class="info">
+              <h3>Metal Shelf</h3>
+              <p>Durable metal shelf for office or home.</p>
+              <div class="price">$150</div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <button class="view-btn">View Details</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-name="Decorative Shelf" data-price="$90"
+        data-desc="Perfect decorative shelf for interiors." data-img="imges/wallpaper4.png">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="imges/wall.shelvs3.html.jpg" alt="Decorative Shelf">
+            <div class="info">
+              <h3>Decorative Shelf</h3>
+              <p>Perfect decorative shelf for interiors.</p>
+              <div class="price">$90</div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <button class="view-btn">View Details</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-name="Luxury Shelf" data-price="$120" data-desc="High-end shelf for elegant spaces."
+        data-img="imges/wallpaper5.png">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="imges/wall.shelvs2.html.jpg" alt="Luxury Shelf">
+            <div class="info">
+              <h3>Luxury Shelf</h3>
+              <p>High-end shelf for elegant spaces.</p>
+              <div class="price">$120</div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <button class="view-btn">View Details</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-name="Creative Shelf" data-price="$95"
+        data-desc="Unique shelf design to enhance your wall." data-img="imges/wallpaper6.png">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="imges/wall.shelvs.html.jpg" alt="Creative Shelf">
+            <div class="info">
+              <h3>Creative Shelf</h3>
+              <p>Unique shelf design to enhance your wall.</p>
+              <div class="price">$95</div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <button class="view-btn">View Details</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-name="Classic Shelf" data-price="$75"
+        data-desc="Timeless design with smooth finishing." data-img="imges/wallpaper7.png">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="imges/shelvs2.html" alt="Classic Shelf">
+            <div class="info">
+              <h3>Classic Shelf</h3>
+              <p>Timeless design with smooth finishing.</p>
+              <div class="price">$75</div>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <button class="view-btn">View Details</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <div id="cartAlert">Item added to cart!</div>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal fade" id="productModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <img id="modalImg" src="">
+        <div class="p-4">
+          <h3 id="modalName"></h3>
+          <p id="modalDesc" class="text-muted"></p>
+          <h5 id="modalPrice" class="text-danger fw-bold"></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNUP MODAL -->
+  <div class="modal" id="signupModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content signup">
+        <span class="close-btn" id="closeModal"
+          style="position:absolute;top:10px;right:20px;cursor:pointer;">&times;</span>
+        <h3 class="text-center mb-3">Sign Up</h3>
+        <form id="signupForm">
+          <input type="text" id="name" placeholder="Full Name" required>
+          <input type="email" id="email" placeholder="Email" required>
+          <input type="password" id="password" placeholder="Password" required>
+          <textarea id="message" rows="3" placeholder="Your Message" required></textarea>
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART DRAWER -->
+  <div id="drawerOverlay"></div>
+  <div id="cartDrawer">
+    <h4>Your Cart</h4>
+    <div id="cartItems"></div>
+  </div>
+
+  <footer>
+    <div class="container text-center">
+      <h5>© 2025 Jensen Decors. All Rights Reserved.</h5>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const cartAlert = document.getElementById("cartAlert");
+    const cartIcon = document.getElementById("cartIcon");
+    const countEl = cartIcon.querySelector(".count");
+    const cartDrawer = document.getElementById("cartDrawer");
+    const drawerOverlay = document.getElementById("drawerOverlay");
+    const cartItemsDiv = document.getElementById("cartItems");
+    const modal = new bootstrap.Modal(document.getElementById("productModal"));
+    const modalImg = document.getElementById("modalImg");
+    const modalName = document.getElementById("modalName");
+    const modalDesc = document.getElementById("modalDesc");
+    const modalPrice = document.getElementById("modalPrice");
+
+    let cart = [];
+
+    document.addEventListener("click", e => {
+      if (e.target.classList.contains("view-btn")) {
+        const c = e.target.closest(".flip-card");
+        modalImg.src = c.dataset.img;
+        modalName.textContent = c.dataset.name;
+        modalDesc.textContent = c.dataset.desc;
+        modalPrice.textContent = c.dataset.price;
+        modal.show();
+      }
+      if (e.target.classList.contains("cart-btn")) {
+        const c = e.target.closest(".flip-card");
+        cart.push({ name: c.dataset.name, price: c.dataset.price });
+        updateCart();
+        showAlert();
+      }
+      if (e.target.classList.contains("remove-btn")) {
+        const i = e.target.dataset.index;
+        cart.splice(i, 1); updateCart();
+      }
+    });
+
+    cartIcon.onclick = () => { cartDrawer.classList.add("open"); drawerOverlay.classList.add("show"); }
+    drawerOverlay.onclick = () => { cartDrawer.classList.remove("open"); drawerOverlay.classList.remove("show"); }
+
+    function updateCart() {
+      countEl.textContent = cart.length;
+      countEl.classList.add("bump");
+      setTimeout(() => countEl.classList.remove("bump"), 300);
+      cartItemsDiv.innerHTML = cart.map((it, i) => `<div class="cart-item"><span>${it.name}</span><span>${it.price}</span><button class="remove-btn" data-index="${i}">×</button></div>`).join('');
+    }
+    function showAlert() {
+      cartAlert.style.display = "block";
+      setTimeout(() => cartAlert.style.display = "none", 2000);
+    }
+
+    // Navbar scroll
+    window.addEventListener("scroll", () => {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) navbar.classList.add("scrolled");
+      else navbar.classList.remove("scrolled");
+    });
+
+    // SIGNUP MODAL LOGIC
+    const signupModal = new bootstrap.Modal(document.getElementById("signupModal"));
+    document.getElementById("openModal").onclick = () => signupModal.show();
+    document.getElementById("closeModal").onclick = () => signupModal.hide();
+    document.getElementById("signupForm").onsubmit = e => {
+      e.preventDefault();
+      alert("Sign Up Successful!");
+      signupModal.hide();
+      e.target.reset();
+    };
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Frame Art</title>
+
+  <!-- ✅ Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f7f7f7;
+    }
+
+    /* ✅ FIXED NAVBAR */
+    .navbar {
+      background-color: #ffffff !important;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: #d4af37 !important;
+      font-family: cursive;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand img {
+      height: 55px;
+      width: 55px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+
+    .nav-link {
+      color: #000 !important;
+      font-weight: 600;
+      margin: 0 12px;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #d4af37 !important;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #d4af37;
+      transition: width 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link.active {
+      color: #d4af37 !important;
+    }
+
+    .dropdown-item:hover {
+      background-color: #d4af37;
+      color: #fff !important;
+    }
+
+    .signup-btn {
+      padding: 10px 22px;
+      background-color: #000;
+      border: none;
+      border-radius: 30px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .signup-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Wallpaper heading */
+    h1.wallpaper-title {
+      text-align: center;
+      color: #6b5b95;
+      margin-bottom: 40px;
+      font-size: 2rem;
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+
+    /* Staggered grid layout */
+    .wallpaper-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      padding: 0 40px;
+      margin-bottom: 50px;
+    }
+
+    /* Cards style */
+    .card {
+      background: #fff5f8;
+      border-radius: 20px;
+      padding: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+
+    .card:nth-child(even) {
+      background: #f0f8ff;
+    }
+
+    .card.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      border-radius: 15px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+    }
+
+    .card h3 {
+      margin: 10px 0 5px;
+      color: #333;
+    }
+
+    .card p {
+      margin: 3px 0;
+      color: #555;
+    }
+
+    /* Sale badge */
+    .sale-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #e74c3c;
+      color: white;
+      padding: 5px 10px;
+      font-weight: bold;
+      font-size: 0.8rem;
+      border-radius: 8px;
+      z-index: 5;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    /* View Details Button */
+    .view-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #6b5b95, #b8a9c9);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .view-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(90deg, #563d7c, #a187c9);
+    }
+
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 60px 0 20px;
+      margin-top: 60px;
+    }
+
+    footer h5 {
+      color: #d4af37;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      color: #d4af37;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      border-top: 1px solid #444;
+      padding-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="imges/logo2.html" alt="Logo">
+        Jensen Decors
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about2.html">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categories</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="metal wall art.html">Metal Wall Art</a></li>
+              <li><a class="dropdown-item" href="photo frame art.html">Photo Frame Art</a></li>
+              <li><a class="dropdown-item" href="mirror.html">Mirror Art</a></li>
+              <li><a class="dropdown-item" href="wall shelves.html">Wall Shelves</a></li>
+              <li><a class="dropdown-item" href="wall mounted animal.html">Wall Mounted Animals</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="contactus.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- ✅ Spacing below navbar -->
+  <div style="height: 100px;"></div>
+  <h1 class="text-3xl font-bold text-center mb-8">Photo Frame Art</h1>
+  <div class="wallpaper-container">
+ <!-- 10 wallpaper cards, 3 with Sale badge -->
+    <div class="card" data-title="Wallpaper 1" data-img="imges/wallpaper1.png.png" data-price="Rs 1500"
+      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+      <div class="sale-badge">Sale</div>
+      <img src="imges/photo frame6.jpeg">
+      <h3>Wallpaper 1</h3>
+      <p>Quantity: 5</p>
+      <button class="view-btn">View Details</button>
+    </div>
+    <div class="card" data-title="Wallpaper 2" data-img="imges/wallpaper2.png.png" data-price="Rs 1600"
+      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+      
+      <img src="imges/photo frame.10jpeg">
+      <h3>Wallpaper 2</h3>
+      <p>Quantity: 5</p>
+      <button class="view-btn">View Details</button>
+    </div>
+    <div class="card" data-title="Wallpaper 3" data-img="imges/wallpaper3.png.png" data-price="Rs 1700"
+      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+      <div class="sale-badge">Sale</div>
+      <img src="imges/photo frame.11jpeg">
+      <h3>Wallpaper 3</h3>
+      <p>Quantity: 5</p>
+      <button class="view-btn">View Details</button>
+    </div>
+    <div class="card" data-title="Wallpaper 4" data-img="imges/wallpaper4.png.png" data-price="Rs 1800"
+      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+      <img src="imges/photo frame.7jpeg">
+      <h3>Wallpaper 4</h3>
+      <p>Quantity: 5</p>
+      <button class="view-btn">View Details</button>
+    </div>
+    <div class="card" data-title="Wallpaper 5" data-img="imges/wallpaper5.png.png" data-price="Rs 1900"
+      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+      <img src="imges/photo frame.8jpeg">
+      <div class="sale-badge">Sale</div>
+      <h3>Wallpaper 5</h3>
+      <p>Quantity: 5</p>
+      <button class="view-btn">View Details</button>
+    </div>
+    <div class="card" data-title="Wallpaper 6" data-img="imges/wallpaper6.png.png" data-price="Rs 2000"
+      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+      <img src="imges/photo frame.9jpeg">
+      <h3>Wallpaper 6</h3>
+      <p>Quantity: 5</p>
+      <button class="view-btn">View Details</button>
+    </div>
+    <div class="card" data-title="Wallpaper 7" data-img="imges/wallpaper7.png.png" data-price="Rs 2100"
+      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+      <img src="imges/photo frame.jpeg">
+      <h3>Wallpaper 7</h3>
+      <p>Quantity: 5</p>
+      <button class="view-btn">View Details</button>
+    </div>
+    <div class="card" data-title="Wallpaper 8" data-img="imges/wallpaper8.png.png" data-price="Rs 2200"
+      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+      <img src="imges/photo frame2.jpeg">
+      <h3>Wallpaper 8</h3>
+      <p>Quantity: 5</p>
+      <button class="view-btn">View Details</button>
+    </div>
+    <div class="card" data-title="Wallpaper 9" data-img="imges/wallpaper9.png.png" data-price="Rs 2300"
+      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+      <img src="imges/photo frame4.jpeg">
+      <h3>Wallpaper 9</h3>
+      <p>Quantity: 5</p>
+      <button class="view-btn">View Details</button>
+    </div>
+    <div class="card" data-title="Wallpaper 10" data-img="imges/wallpaper10.png.png" data-price="Rs 2400"
+      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+      <img src="imges/photo frame5.jpeg">
+      <h3>Wallpaper 10</h3>
+      <p>Quantity: 5</p>
+      <button class="view-btn">View Details</button>
+    </div>
+</div>
+  
+  
+  
+
+  <!-- ✅ Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4"><h5>About Us</h5><p>Jensen Decors brings elegance & modern design to your space with premium wall décor and artistic style.</p></div>
+        <div class="col-md-4"><h5>Quick Links</h5><a href="index.html">Home</a><br><a href="about.html">About</a><br><a href="slidder.html">Categories</a><br><a href="#">Contact</a></div>
+        <div class="col-md-4"><h5>Contact</h5><p>Email: info@jensendecors.com<br>Phone: +92 300 1234567</p></div>
+      </div>
+      <div class="footer-bottom"><p>© 2025 Jensen Decors. All Rights Reserved.</p></div>
+    </div>
+  </footer>
+
+  <!-- ✅ Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- ✅ Dropdown hover enable -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // dropdown hover
+      const dropdowns = document.querySelectorAll('.nav-item.dropdown');
+      dropdowns.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          const menu = item.querySelector('.dropdown-menu');
+          menu.classList.add('show');
+        });
+        item.addEventListener('mouseleave', () => {
+          const menu = item.querySelector('.dropdown-menu');
+          menu.classList.remove('show');
+        });
+      });
+
+      // your existing JS
+      const cards = document.querySelectorAll('.card');
+      cards.forEach((card, index) => {
+        setTimeout(() => { card.classList.add('show'); }, index * 150);
+      });
+    });
+  </script>
+</body>
+</html>

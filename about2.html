@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Jenson Decors</title>
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Dancing+Script:wght@700&family=Lora&display=swap"
+    rel="stylesheet">
+ <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+ <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* NAVBAR */
+    nav {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: linear-gradient(135deg, #000000, #fff7f0);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+    }
+
+    nav .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fffcfc;
+    }
+
+    /* NAV LINKS CENTER */
+    .nav-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      position: relative;
+      color: #000000;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 17px;
+      transition: 0.3s;
+      cursor: pointer;
+      font-size: large;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    }
+
+    nav ul li a:hover {
+      color: #b07d2b;
+    }
+
+
+    /* DROPDOWN */
+    /* DROPDOWN */
+    nav ul li ul {
+      position: absolute;
+      /* top:30px; thoda adjust kiya */
+      left: 0;
+      background: hsl(0, 0%, 100%);
+      display: none;
+      flex-direction: column;
+      min-width: 180px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      border-radius: 6px;
+      padding: 0;
+    }
+
+    nav ul li:hover ul {
+      display: flex;
+    }
+
+    nav ul li ul li {
+      width: 100%;
+      margin: 0;
+      /* remove extra spacing */
+    }
+
+    nav ul li ul li a {
+
+      display: block;
+      color: #020202;
+      white-space: nowrap;
+    }
+
+    nav ul li ul li a:hover {
+      background: #f7f1e5;
+    }
+.cat{
+  color: #ffffff;
+}
+    /* DROPDOWN GOLDEN ARROW */
+    nav ul li.dropdown>a::after {
+      content: "";
+      display: inline-block;
+      margin-left: 6px;
+      border-top: 6px solid #b07d2b;
+      border-right: 6px solid transparent;
+      border-left: 6px solid transparent;
+      vertical-align: middle;
+    }
+
+    nav ul li.dropdown:hover>a::after {
+      border-top-color: #b07d2b;
+    }
+
+
+    /* HERO */
+    /* HERO SECTION */
+.hero {
+  width: 100%;
+  min-height: 600px;
+  background: linear-gradient(135deg, #000000, #fff7f0);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 10%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Heading */
+.hero-left {
+  width: 50%;
+  position: relative;
+  z-index:2;
+}
+.hero-left h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 60px;
+  color: #d4af37;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 5px #222;
+}
+
+/* Animated Text */
+.animated-text {
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  font-size:24px;
+  font-weight:600;
+  color:#222;
+  position: relative;
+  min-height:140px;
+  overflow:hidden;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.animated-text-line {
+  position:absolute;
+  white-space: nowrap;
+  opacity:0;
+  transform:translateX(-100%);
+  animation: slideLoop 12s linear infinite;
+}
+
+.animated-text-line:nth-child(1){ animation-delay:0s; top:0; }
+.animated-text-line:nth-child(2){ animation-delay:3s; top:35px; }
+.animated-text-line:nth-child(3){ animation-delay:6s; top:70px; }
+.animated-text-line:nth-child(4){ animation-delay:9s; top:105px; }
+
+@keyframes slideLoop {
+  0% { transform:translateX(-100%); opacity:0; }
+  10% { transform:translateX(0); opacity:1; }
+  40% { transform:translateX(0); opacity:1; }
+  50% { transform:translateX(100%); opacity:0; }
+  100% { transform:translateX(100%); opacity:0; }
+}
+
+/* Circle Image Slider on Right */
+.hero-right {
+  width: 45%;
+  position: relative;
+  z-index:2;
+}
+.circle-slider-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  margin-left:auto;
+}
+
+/* All images stacked for fade effect */
+.circle-slider-container img {
+  position: absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition: opacity 1s ease-in-out;
+}
+.circle-slider-container img.active { opacity:1; }
+
+/* Parallax Effect for Text */
+.hero-left, .animated-text-line {
+  transition: transform 0.2s;
+}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero { flex-direction: column; padding:100px 5%; text-align:center; }
+  .hero-left, .hero-right { width:100%; }
+  .hero-left h1 { font-size:40px; }
+  .animated-text { font-size:20px; min-height:120px; }
+  .animated-text-line:nth-child(2){ top:28px; }
+  .animated-text-line:nth-child(3){ top:56px; }
+  .animated-text-line:nth-child(4){ top:84px; }
+  .circle-slider-container { width:200px; height:200px; margin:30px auto 0; }
+}
+    /* SECTION */
+    .section {
+      width: 100%;
+      padding: 80px 8%;
+    }
+
+    /* OUR STORY */
+    .story {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .story-text h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .story-text p {
+      font-size: 17px;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .story img {
+      width: 450px;
+      border-radius: 10px;
+      transition: 0.4s;
+    }
+
+    .story img:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    /* MISSION & VISION BOXES */
+    .mission{
+      justify-content: center;
+      text-align: center;
+      padding-bottom: 20px;
+      font-weight: bolder;
+      font-family: "Dancing Script", cursive;
+    }
+    .mission-box {
+      background: #fff;
+      border: 2px solid #e3d4b9;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .mission-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .mission-box h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #b07d2b;
+    }
+
+    .mission-box p {
+      color: #555;
+      font-size: 17px;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+
+    /* ICONS */
+    .mission-box svg {
+      width: 50px;
+      height: 50px;
+      fill: #b07d2b;
+      margin-bottom: 15px;
+      transition: 0.3s;
+    }
+
+    .mission-box:hover svg {
+      transform: translateY(-5px);
+    }
+
+    /* FORM STYLE */
+    form {
+      width: 60%;
+      margin: auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      border: 2px solid #e6d9c3;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: 0.3s;
+    }
+
+    form:hover {
+      transform: translateY(-5px);
+    }
+
+    form h2 {
+      text-align: center;
+      font-family: "Playfair Display", serif;
+      font-size: 36px;
+      margin-bottom: 25px;
+      color: #b07d2b;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0 22px 0;
+      border-radius: 6px;
+      border: 1px solid #cfcfcf;
+      font-size: 16px;
+      transition: .3s;
+    }
+
+    form input:focus,
+    form textarea:focus {
+      border-color: #b07d2b;
+      outline: none;
+      box-shadow: 0 0 8px rgba(176, 125, 43, 0.4);
+    }
+
+    form button {
+      width: 100%;
+      padding: 15px;
+      background: #b07d2b;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    form button:hover {
+      background: #8d621f;
+    }
+        /* Counter Section Styling */
+    .projects-section {
+      padding: 100px 0;
+      text-align: center;
+      background: linear-gradient(135deg, #fff, #f0f4f8);
+    }
+
+    .projects-section h2 {
+      font-weight: 700;
+      margin-bottom: 50px;
+      font-size: 2.5rem;
+      color: #222;
+    }
+
+    .counter-box {
+      background: white;
+      border-radius: 15px;
+      padding: 30px 20px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .counter-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .counter {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #0d6efd;
+    }
+
+    .counter-label {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #555;
+    }
+    .team-section {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .team-section h2 {
+      font-size: 38px;
+      margin-bottom: 50px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .team-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px 20px 50px 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: transform 0.4s, box-shadow 0.4s;
+      position: relative;
+    }
+
+    .team-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+    }
+
+    .team-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 36px;
+      font-weight: bold;
+      margin: 0 auto 20px auto;
+      transition: transform 0.4s;
+    }
+
+    /* Different background colors for each member */
+    .circle-1 { background: #007bff; }
+    .circle-2 { background: #28a745; } 
+    .circle-3 { background: #ffc107; color: #333; } 
+    .circle-4 { background: #dc3545; } 
+
+    .team-card:hover .team-circle {
+      transform: scale(1.1);
+    }
+
+    .team-card h5 {
+      font-size: 20px;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    .team-card p {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      color: #007bff;
+      font-size: 18px;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #0056b3;
+      transform: scale(1.2);
+    }
+
+    /* Animation on scroll */
+    .animate {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.6s ease-in-out;
+    }
+
+    .animate.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* -------- FOOTER -------- */
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 60px 0 20px;
+      margin-top: 0;
+    }
+
+    footer h5 {
+      color: #d4af37;
+      font-weight: 600;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      color: #d4af37;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      border-top: 1px solid #444;
+      padding-top: 15px;
+    }
+
+    /* ANIMATION */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.9s ease;
+    }
+
+    .show {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    @media(max-width:900px) {
+      .story {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .story img {
+        width: 100%;
+      }
+
+      form {
+        width: 100%;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">Jenson Decors</div>
+
+    <div class="nav-wrapper">
+      <ul>
+        <li class="Links"><a href="index.html">Home</a></li>
+        <li class="Links"><a href="about2.html">About</a></li>
+        <li class="dropdown">
+          <a class="cat">Categories</a>
+          <ul>
+            <li><a href="metal wall art.html">Metal Wall Art</a></li>
+            <li><a href="photo frame art.html">Photo Frame Art</a></li>
+            <li><a href="mirror.html">Mirror Art</a></li>
+            <li><a href="wall shelves.html">Wall Shelves</a></li>
+            <li><a href="wall mounted animal.html">Wall Mounted Animals</a></li>
+          </ul>
+        </li>
+        <li><a href="contactus.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <h1>Jensen Decors</h1>
+    <div class="animated-text">
+      <div class="animated-text-line">We bring elegance to your home.</div>
+      <div class="animated-text-line">Premium wall décor for modern spaces.</div>
+      <div class="animated-text-line">Artistic designs that inspire creativity.</div>
+      <div class="animated-text-line">Experience luxury and style with us.</div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="circle-slider-container">
+      <img src="imges/Scandinavian Living Space by Jensen Decors.png" class="active" alt="Image1">
+      <img src="imges/mirror4.jpg" alt="Image2">
+      <img src="imges/img_bg_1.jpg" alt="Image3">
+    </div>
+  </div>
+</div>
+    <!-- ---------------- MODAL + PARTICLES ---------------- -->
+  <div class="modal" id="signupModal">
+    <div class="particles" id="particlesContainer"></div>
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h2>Sign Up</h2>
+      <form id="signupForm">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+    <!-- ---------------- MODAL + PARTICLES ---------------- -->
+  <div class="modal" id="signupModal">
+    <div class="particles" id="particlesContainer"></div>
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h2>Sign Up</h2>
+      <form id="signupForm">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- OUR STORY -->
+  <section class="section story fade-up">
+    <div class="story-text">
+      <h2>Our Story</h2>
+      <p>
+        Jenson Decors began with a passion for beauty and creativity.
+        Today, we design spaces that inspire, comfort, and create memories.
+      </p>
+      Our team combines expertise, craftsmanship, and aesthetics to deliver inspiring spaces
+      <p>
+
+      </p>
+    </div>
+
+    <img src="imges/review.html" alt="">
+  </section>
+
+  <!-- MISSION + VISION -->
+  <section class="section fade-up">
+    <h1 class="mission">MISSION & VISION</h1>
+    <div style="display:flex; gap:30px; flex-wrap:wrap;">
+      <div class="mission-box">
+        <!-- Target Icon for Mission -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="30" stroke="#b07d2b" stroke-width="4" fill="none" />
+          <circle cx="32" cy="32" r="14" />
+        </svg>
+        <h2>Mission</h2>
+        <p>
+          Our mission is to provide premium interior décor that blends style,
+          comfort, and artistic value seamlessly.
+        </p>
+      </div>
+      <div class="mission-box">
+        <!-- Eye Icon for Vision -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+          <path d="M32 16C18 16 8 32 32 48 56 32 46 16 32 16z" stroke="#b07d2b" stroke-width="4" fill="none" />
+          <circle cx="32" cy="32" r="6" fill="#b07d2b" />
+        </svg>
+        <h2>Vision</h2>
+        <p>
+          Our vision is to be the most trusted brand in modern décor,
+          bringing inspiration into every home we touch.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+<section class="team-section">
+  <div class="container">
+    <h2>Meet Our Team</h2>
+    <div class="row g-4 justify-content-center">
+      <!-- Team Member 1 -->
+      <div class="col-md-3 col-sm-6 animate">
+        <div class="team-card">
+          <div class="team-circle circle-1">A</div>
+          <h5>Alyan Khan</h5>
+          <p>Leader</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 2 -->
+      <div class="col-md-3 col-sm-6 animate">
+        <div class="team-card">
+          <div class="team-circle circle-2">Z</div>
+          <h5>Zaviyar</h5>
+          <p>Team Member</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 3 -->
+      <div class="col-md-3 col-sm-6 animate">
+        <div class="team-card">
+          <div class="team-circle circle-3">R</div>
+          <h5>Rohan</h5>
+          <p>Team Member</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 4 -->
+      <div class="col-md-3 col-sm-6 animate">
+        <div class="team-card">
+          <div class="team-circle circle-4">F</div>
+          <h5>Faraz</h5>
+          <p>Team Member</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  
+    <!-- ✅ OUR PROJECT COUNTER SECTION -->
+    <section class="projects-section" id="projects">
+      <div class="container">
+        <h2>Our Projects</h2>
+        <div class="row g-4">
+          <div class="col-md-3 col-6">
+            <div class="counter-box">
+              <div class="counter" data-target="250">0</div>
+              <div class="counter-label">Completed Projects</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="counter-box">
+              <div class="counter" data-target="120">0</div>
+              <div class="counter-label">Happy Clients</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="counter-box">
+              <div class="counter" data-target="80">0</div>
+              <div class="counter-label">Team Members</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="counter-box">
+              <div class="counter" data-target="15">0</div>
+              <div class="counter-label">Awards Won</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  <!-- WORK WITH US -->
+  <section class="section fade-up">
+    <form id="contactForm">
+      <h2>Work With Us</h2>
+      <input type="text" id="name" placeholder="Your Name">
+      <input type="email" id="email" placeholder="Email Address">
+      <input type="text" id="phone" placeholder="Phone Number">
+      <textarea id="message" rows="4" placeholder="Your Message"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+<!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>About Us</h5>
+          <p>Jensen Decors brings elegance & modern design to your space with premium wall décor and artistic style.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Links</h5><a href="index.html">Home</a><br><a href="about.html">About</a><br><a href="slidder.html">Categories</a><br><a
+            href="#">Contact</a>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact</h5>
+          <p>Email: info@jensendecors.com<br>Phone: +92 300 1234567</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Jensen Decors. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    /* Fade Animation */
+    const faders = document.querySelectorAll('.fade-up');
+    function showOnScroll() {
+      faders.forEach(el => {
+        let pos = el.getBoundingClientRect().top;
+        if (pos < window.innerHeight - 100) {
+          el.classList.add('show');
+        }
+      });
+    }
+    window.addEventListener('scroll', showOnScroll);
+    showOnScroll();
+
+    /* Form Validation */
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      let name = document.getElementById("name").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let phone = document.getElementById("phone").value.trim();
+      let message = document.getElementById("message").value.trim();
+
+      if (name.length < 3) { alert("Name must be at least 3 characters."); return; }
+      if (!email.includes("@") || !email.includes(".")) { alert("Enter a valid email."); return; }
+      if (isNaN(phone) || phone.length < 10) { alert("Enter a valid phone number."); return; }
+      if (message.length < 10) { alert("Message must be at least 10 characters."); return; }
+      alert("Form submitted successfully!");
+    });
+      document.addEventListener("DOMContentLoaded", function() {
+    const animateElements = document.querySelectorAll('.animate');
+
+    if (animateElements.length > 0) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('show');
+          }
+        });
+      }, { threshold: 0.3 });
+
+      animateElements.forEach(el => observer.observe(el));
+    }
+  });
+    // Counter Animation
+    const counters = document.querySelectorAll('.counter');
+    let started = false;
+    const startCounting = () => {
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const duration = 1500, stepTime = 15;
+        const increment = target / (duration / stepTime);
+        let count = 0;
+        const timer = setInterval(() => {
+          count += increment;
+          if (count >= target) {
+            counter.textContent = target;
+            clearInterval(timer);
+          } else {
+            counter.textContent = Math.floor(count);
+          }
+        }, stepTime);
+      });
+    };
+    const section = document.querySelector('#projects');
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !started) {
+        startCounting();
+        started = true;
+      }
+    }, { threshold: 0.4 });
+    observer.observe(section);
+      // Parallax Effect on scroll for hero text
+  const heroLeft = document.querySelector('.hero-left');
+  window.addEventListener('scroll', () => {
+    let offset = window.pageYOffset;
+    heroLeft.style.transform = `translateY(${offset * 0.2}px)`;
+  });
+
+  // Smooth Image Slider
+  const images = document.querySelectorAll('.circle-slider-container img');
+  let current = 0;
+  setInterval(() => {
+    images[current].classList.remove('active');
+    current = (current + 1) % images.length;
+    images[current].classList.add('active');
+  }, 3000); // 3 seconds per image
+  </script>
+
+</body>
+
+</html>

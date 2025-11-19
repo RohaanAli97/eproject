@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Jenson Decors</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            'primary-charcoal': '#1F2937',
+            'accent-bronze': '#D97706',
+            'soft-beige': '#F9FAFB',
+            'light-gray': '#F3F4F6'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+
+
+    /* Fade-in animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Counter Section Styling */
+    .projects-section {
+      padding: 100px 0;
+      text-align: center;
+      background: linear-gradient(135deg, #fff, #f0f4f8);
+    }
+
+    .projects-section h2 {
+      font-weight: 700;
+      margin-bottom: 50px;
+      font-size: 2.5rem;
+      color: #222;
+    }
+
+    .counter-box {
+      background: white;
+      border-radius: 15px;
+      padding: 30px 20px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .counter-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .counter {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #0d6efd;
+    }
+
+    .counter-label {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #555;
+    }
+     .feature-section {
+      background-color: #f9f9f7;
+      padding: 80px 0;
+      text-align: center;
+    }
+    .feature-box {
+      background: transparent;
+      padding: 30px 20px;
+    }
+    .feature-icon {
+      background-color: #d6bf7b;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+    }
+    .feature-icon i {
+      font-size: 40px;
+      color: white;
+    }
+    .feature-title {
+      font-weight: 700;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+    .feature-text {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 25px;
+    }
+    .feature-btn {
+      border: 1px solid #d6bf7b;
+      color: #d6bf7b;
+      background: transparent;
+      padding: 8px 25px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .feature-btn:hover {
+      background: #d6bf7b;
+      color: #fff;
+    }
+    /* animation */
+    @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  .fade-in:nth-child(1) { animation-delay: 0.2s; }
+  .fade-in:nth-child(2) { animation-delay: 0.4s; }
+  .fade-in:nth-child(3) { animation-delay: 0.6s; }
+  .fade-in:nth-child(4) { animation-delay: 0.8s; }
+  </style>
+</head>
+
+<body class="bg-soft-beige text-primary-charcoal font-sans">
+
+
+  <main class="pt-24">
+
+    <!-- Hero Section -->
+    <section class="bg-white py-20 text-center">
+      <div class="max-w-5xl mx-auto px-4">
+        <h1 class="text-5xl sm:text-6xl font-extrabold text-primary-charcoal mb-6">
+          About <span class="text-accent-bronze">Jenson Decors</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          Transforming spaces with elegance, creativity, and quality. We bring your dream interiors to life.
+        </p>
+      </div>
+    </section>
+
+    <!-- Story -->
+    <section class="py-16">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-12">
+        <div class="lg:w-1/2 fade-in">
+          <h2 class="text-3xl font-bold mb-4">Our Story</h2>
+          <p class="text-gray-600 mb-4">Founded with a passion for design, Jenson Decors crafts interiors that reflect style, comfort, and functionality.</p>
+          <p class="text-gray-600">Our team combines expertise, craftsmanship, and aesthetics to deliver inspiring spaces.</p>
+        </div>
+        <div class="lg:w-1/2 fade-in">
+          <img src="imges/review.html" class="rounded-2xl shadow-2xl w-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="py-16 bg-light-gray text-center">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-4xl font-extrabold mb-12">Mission & Vision</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white p-8 rounded-2xl shadow-lg fade-in">
+            <h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+            <p class="text-gray-600">Deliver interiors that combine elegance and functionality.</p>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-lg fade-in">
+            <h3 class="text-2xl font-bold mb-4">Our Vision</h3>
+            <p class="text-gray-600">To be recognized as a leading interior design company.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="feature-section">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <h5 class="feature-title">Credit Card</h5>
+            <p class="feature-text">
+              Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
+            </p>
+            <a href="#" class="feature-btn">Learn More</a>
+          </div>
+        </div>
+<!-- cards -->
+        <div class="col-md-4">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-wallet"></i>
+            </div>
+            <h5 class="feature-title">Save Money</h5>
+            <p class="feature-text">
+              Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
+            </p>
+            <a href="#" class="feature-btn">Learn More</a>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="fas fa-paper-plane"></i>
+            </div>
+            <h5 class="feature-title">Free Delivery</h5>
+            <p class="feature-text">
+              Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
+            </p>
+            <a href="#" class="feature-btn">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+    <!-- Our Recent Projects -->
+    <section class="py-16">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <!-- <img src="imges/hero2.png" alt="Projects Banner" class="rounded-xl mb-12 shadow-lg fade-in"> -->
+        <h2 class="text-4xl font-extrabold mb-10">Our Recent Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="rounded-xl shadow-lg overflow-hidden fade-in">
+            <img src="imges/hero2.png" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold">City Penthouse</h3>
+              <p class="mt-2 text-gray-600 text-sm">Luxury renovation with premium marble finishes.</p>
+            </div>
+          </div>
+          <div class="rounded-xl shadow-lg overflow-hidden fade-in">
+            <img src="imges/2.html.jpg" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold">Apex Tech HQ</h3>
+              <p class="mt-2 text-gray-600 text-sm">Modern office design with functional layouts.</p>
+            </div>
+          </div>
+          <div class="rounded-xl shadow-lg overflow-hidden fade-in">
+            <img src="imges/shelvs2.html" class="w-full h-64 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold">Coastal Retreat</h3>
+              <p class="mt-2 text-gray-600 text-sm">Residential project with natural light and wood accents.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Team -->
+   <!-- Our Team Section -->
+<section id="team" class="py-20 bg-gray-100">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h2 class="text-4xl font-extrabold text-gray-800 mb-14 relative inline-block opacity-0 translate-y-8 transition-all duration-700 section-fade">
+      Meet Our Team
+      <span class="block w-24 h-1 bg-amber-500 mx-auto mt-3 rounded-full"></span>
+    </h2>
+
+    <!-- Top 3 Members -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 mb-12">
+      <!-- Member 1 -->
+      <div class="team-card bg-white p-6 rounded-2xl shadow-md hover:shadow-xl opacity-0 translate-y-8 transition-all duration-700">
+        <img src="https://placehold.co/300x300/1F2937/FFFFFF?text=CEO"
+          class="w-44 h-44 mx-auto rounded-full shadow-lg mb-4">
+        <h3 class="text-xl font-bold text-gray-800">ALYAN KHAN</h3>
+        <p class="text-amber-600 font-semibold">LEADER</p>
+      </div>
+
+      <!-- Member 2 -->
+      <div class="team-card bg-white p-6 rounded-2xl shadow-md hover:shadow-xl opacity-0 translate-y-8 transition-all duration-700">
+        <img src="https://placehold.co/300x300/1F2937/FFFFFF?text=Manager"
+          class="w-44 h-44 mx-auto rounded-full shadow-lg mb-4">
+        <h3 class="text-xl font-bold text-gray-800">ZAVIYAR</h3>
+      </div>
+
+      <!-- Member 3 -->
+      <div class="team-card bg-white p-6 rounded-2xl shadow-md hover:shadow-xl opacity-0 translate-y-8 transition-all duration-700">
+        <img src="https://placehold.co/300x300/4B5563/FFFFFF?text=Designer"
+          class="w-44 h-44 mx-auto rounded-full shadow-lg mb-4">
+        <h3 class="text-xl font-bold text-gray-800">ROHAN</h3>
+      </div>
+    </div>
+
+    <!-- Centered 4th Member -->
+    <div class="flex justify-center">
+      <div class="team-card bg-white p-6 rounded-2xl shadow-md hover:shadow-xl w-full sm:w-2/3 md:w-1/3 opacity-0 translate-y-8 transition-all duration-700">
+        <img src="https://placehold.co/300x300/D97706/FFFFFF?text=team"
+          class="w-44 h-44 mx-auto rounded-full shadow-lg mb-4">
+        <h3 class="text-xl font-bold text-gray-800">FARAZ</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- ✅ OUR PROJECT COUNTER SECTION -->
+    <section class="projects-section" id="projects">
+      <div class="container">
+        <h2>Our Projects</h2>
+        <div class="row g-4">
+          <div class="col-md-3 col-6">
+            <div class="counter-box">
+              <div class="counter" data-target="250">0</div>
+              <div class="counter-label">Completed Projects</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="counter-box">
+              <div class="counter" data-target="120">0</div>
+              <div class="counter-label">Happy Clients</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="counter-box">
+              <div class="counter" data-target="80">0</div>
+              <div class="counter-label">Team Members</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="counter-box">
+              <div class="counter" data-target="15">0</div>
+              <div class="counter-label">Awards Won</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA + Contact Form (same as before) -->
+    <section class="py-16 bg-accent-bronze text-white text-center rounded-t-3xl">
+      <div class="max-w-3xl mx-auto px-4">
+        <h2 class="text-4xl font-extrabold mb-6">Work With Us</h2>
+        <p class="mb-8">Ready to transform your space? Let’s create something extraordinary together.</p>
+        <a href="#contact" class="inline-block px-8 py-4 bg-primary-charcoal text-white font-semibold rounded-full hover:bg-white hover:text-primary-charcoal transition duration-300 transform hover:scale-105">
+          Get In Touch
+        </a>
+      </div>
+    </section>
+
+    <section id="contact" class="py-16 bg-soft-beige">
+      <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-4xl font-extrabold text-primary-charcoal text-center mb-6 fade-in">Contact Us</h2>
+        <p class="text-gray-600 text-center mb-12 fade-in">Fill out the form below and we’ll get back to you promptly.</p>
+
+        <form id="contact-form" class="space-y-6 bg-white p-8 rounded-2xl shadow-xl fade-in">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input type="text" placeholder="Full Name" required class="w-full px-4 py-3 border rounded-lg focus:ring-accent-bronze focus:border-accent-bronze">
+            <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 border rounded-lg focus:ring-accent-bronze focus:border-accent-bronze">
+          </div>
+          <input type="text" placeholder="Project Type" required class="w-full px-4 py-3 border rounded-lg focus:ring-accent-bronze focus:border-accent-bronze">
+          <textarea placeholder="Message / Project Details" rows="4" required class="w-full px-4 py-3 border rounded-lg focus:ring-accent-bronze focus:border-accent-bronze"></textarea>
+          <button type="submit" class="w-full py-3 px-6 rounded-full bg-primary-charcoal text-white font-medium hover:bg-accent-bronze transition transform hover:scale-[1.01]">
+            Send Inquiry
+          </button>
+          <p id="success-message" class="text-center text-green-600 font-semibold hidden">Thank you! Your inquiry has been sent.</p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-primary-charcoal text-white py-10">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h4 class="text-xl font-semibold mb-4 text-accent-bronze">Jenson Decors</h4>
+      <p class="text-sm text-gray-400">&copy; 2025 Jenson Decors. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+  // Navbar scroll
+window.addEventListener("scroll", function () {
+  const navbar = document.querySelector(".navbar");
+  if (window.scrollY > 50) navbar.classList.add("scrolled");
+  else navbar.classList.remove("scrolled");
+});
+
+// Highlight current page link
+document.querySelectorAll('.nav-link').forEach(link => {
+  if (link.href === window.location.href) {
+    link.classList.add('active-page');
+  }
+});
+  const toggleBtn = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  toggleBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('hidden');
+  });
+
+
+
+    // Fade-in
+    const faders = document.querySelectorAll('.fade-in');
+    window.addEventListener('scroll', () => {
+      faders.forEach(fader => {
+        if (window.scrollY + window.innerHeight > fader.offsetTop + 100) {
+          fader.classList.add('visible');
+        }
+      });
+    });
+
+    // Contact Form
+    const contactForm = document.getElementById('contact-form');
+    const successMessage = document.getElementById('success-message');
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+      contactForm.reset();
+      successMessage.classList.remove('hidden');
+      setTimeout(() => successMessage.classList.add('hidden'), 5000);
+    });
+
+    // Counter Animation
+    const counters = document.querySelectorAll('.counter');
+    let started = false;
+    const startCounting = () => {
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const duration = 1500, stepTime = 15;
+        const increment = target / (duration / stepTime);
+        let count = 0;
+        const timer = setInterval(() => {
+          count += increment;
+          if (count >= target) {
+            counter.textContent = target;
+            clearInterval(timer);
+          } else {
+            counter.textContent = Math.floor(count);
+          }
+        }, stepTime);
+      });
+    };
+    const section = document.querySelector('#projects');
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !started) {
+        startCounting();
+        started = true;
+      }
+    }, { threshold: 0.4 });
+    observer.observe(section);
+      (function () {
+    // If already created somewhere else, reuse the observer
+    const threshold = 0.2;
+    const rootMargin = '0px 0px -10% 0px';
+
+    // create or reuse a global observer reference
+    const teamObserver = window.__teamObserver || new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        const el = entry.target;
+        // prevent double-animation
+        if (el.dataset.animated === 'true') {
+          obs.unobserve(el);
+          return;
+        }
+
+        // stagger effect: small delay if element has data-delay attribute
+        const delay = parseFloat(el.dataset.delay || '0');
+        setTimeout(() => {
+          el.classList.remove('opacity-0', 'translate-y-8');
+          el.classList.add('opacity-100', 'translate-y-0');
+          el.dataset.animated = 'true';
+          // stop observing after animated
+          obs.unobserve(el);
+        }, delay * 1000);
+      });
+    }, { threshold, rootMargin });
+
+    // store globally so other scripts can reuse
+    window.__teamObserver = teamObserver;
+
+    // Observe target elements and add small stagger delays
+    const targets = document.querySelectorAll('.team-card, .section-fade');
+    targets.forEach((el, i) => {
+      // add tiny stagger: 0.15s, 0.3s, ...
+      if (!el.dataset.delay) el.dataset.delay = (0.15 * i).toFixed(2);
+      teamObserver.observe(el);
+    });
+  })();
+  </script>
+
+</body>
+</html>

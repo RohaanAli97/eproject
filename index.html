@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jensen Decors | Home</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  
+  <style>
+    /* -------- NAVBAR -------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent !important;
+  padding: 20px 0;
+  z-index: 1;
+  transition: 0.4s;
+}
+
+.navbar.scrolled {
+  background: #fff !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
+
+/* Brand */
+.navbar-brand {
+  font-weight: 700;
+  color: #d4af37 !important;
+  font-family: cursive;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  height: 60px;
+  width: 60px;
+  margin-right: 10px;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.navbar-brand img:hover {
+  transform: scale(1.1);
+}
+
+/* ================= NORMAL NAV LINKS ================= */
+.nav-link {
+  color: #fff !important;
+  font-weight: 600;
+  margin: 0 12px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.navbar.scrolled .nav-link {
+  color: #000 !important;
+}
+
+/* Hover color */
+.nav-link:hover {
+  color: #d4af37 !important;
+}
+
+/* ---------------- HOVER LINE ONLY FOR NORMAL LINKS ---------------- */
+.nav-item:not(.dropdown) .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #d4af37;
+  transition: 0.3s;
+}
+
+.nav-item:not(.dropdown) .nav-link:hover::after {
+  width: 100%;
+}
+
+/* ACTIVE page underline */
+.nav-link.active,
+.nav-link.active-page {
+  color: #d4af37 !important;
+}
+
+.nav-link.active::after,
+.nav-link.active-page::after {
+  width: 100%;
+  background: #d4af37;
+}
+
+/* ================= DROPDOWN FIX ================= */
+
+/* Remove underline from Categories */
+.nav-item.dropdown .nav-link::after {
+  display: none !important;
+}
+
+/* Custom golden arrow */
+.dropdown-toggle::after {
+  display: inline-block;
+  content: "";
+  margin-left: 6px;
+  border-top: .45em solid #d4af37;
+  border-right: .45em solid transparent;
+  border-left: .45em solid transparent;
+  vertical-align: middle;
+}
+.nav-item.dropdown .dropdown-toggle::after {
+    content: "";
+    display: inline-block !important;
+    margin-left: 6px !important;
+    vertical-align: middle !important;
+
+    border-top: 6px solid #d4af37 !important;   
+    border-right: 6px solid transparent !important;
+    border-left: 6px solid transparent !important;
+
+    border-bottom: none !important;
+}
+
+
+/* Hover arrow stays gold */
+.nav-item.dropdown .nav-link:hover::after {
+  border-top-color: #d4af37;
+}
+
+
+    /* -------- HERO -------- */
+    .hero {
+      height: 100vh;
+      background: url("/imges/hero.html") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding-left: 10%;
+      position: relative;
+      animation: bgZoom 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgZoom {
+      0% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(1.1);
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .content {
+      position: relative;
+      color: #fff;
+      z-index: 2;
+      max-width: 600px;
+      opacity: 0;
+      transform: translateX(-50px);
+      animation: fadeSlide 1s forwards;
+    }
+
+    .content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      text-shadow: 0 0 15px #d4af37;
+    }
+
+    .content p {
+      margin: 20px 0 30px;
+      font-size: 1.2rem;
+      color: #eee;
+    }
+
+    .btn-gold {
+      background: #d4af37;
+      color: #000;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn-gold:hover {
+      background: #fff;
+      color: #000;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    @keyframes fadeSlide {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* -------- SECTIONS GENERAL -------- */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #d4af37;
+      font-weight: bold;
+      margin-bottom: 50px;
+    }
+
+    /* -------- CATEGORIES -------- */
+    .categories {
+      background: #fff;
+      border-top: none;
+    }
+
+    .categories .card {
+      border: none;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transform: translateY(50px);
+      opacity: 0;
+      transition: 0.6s ease;
+    }
+
+    .categories .card.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .categories img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .categories .card-body {
+      text-align: center;
+      padding: 20px;
+      background: #fff;
+    }
+
+    /* -------- TRENDING STYLES -------- */
+    .trending .card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .trending .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .trending img {
+      height: 250px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .trending .card-body {
+      text-align: center;
+      background: #fff;
+      padding: 20px;
+    }
+
+    /* -------- REVIEWS -------- */
+    .reviews {
+      background: #fafafa;
+    }
+
+    .review-box {
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: 0.3s;
+    }
+
+    .review-box:hover {
+      transform: translateY(-8px);
+    }
+
+    .review-box p {
+      font-style: italic;
+      color: #555;
+    }
+
+    .review-box h5 {
+      margin-top: 15px;
+      color: #d4af37;
+      font-weight: bold;
+    }
+
+    /* -------- FOOTER -------- */
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 60px 0 20px;
+      margin-top: 0;
+    }
+
+    footer h5 {
+      color: #d4af37;
+      font-weight: 600;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      color: #d4af37;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      border-top: 1px solid #444;
+      padding-top: 15px;
+    }
+
+    /* -------- BACK TO TOP -------- */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #d4af37;
+      color: #000;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 50%;
+      font-weight: bold;
+      display: none;
+      transition: 0.3s;
+    }
+
+    #backToTop:hover {
+      background: #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ---------------- SIGN UP BUTTON ---------------- */
+    .signup-btn {
+      padding: 10px 22px;
+      background-color: #000;
+      border: none;
+      border-radius: 30px;
+      color: rgb(209, 208, 208);
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+      animation: movingGlow 3s linear infinite;
+    }
+
+    .signup-btn:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes movingGlow {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* ---------------- MODAL ---------------- */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      z-index: 1050;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, #ffffff, #ffe6e6);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      padding: 30px;
+      border-radius: 20px;
+      width: 400px;
+      position: relative;
+      overflow: hidden;
+      animation: slideBounce 0.6s forwards;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes slideBounce {
+      0% {
+        transform: translateY(-80px);
+        opacity: 0;
+      }
+
+      60% {
+        transform: translateY(10px);
+        opacity: 1;
+      }
+
+      80% {
+        transform: translateY(-5px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #333;
+    }
+.signup-btn {
+  margin-left: 40px !important;
+}
+.navbar-nav li {
+  list-style: none !important;
+}
+
+    .modal-content h2 {
+      text-align: center;
+      margin-top: 0;
+      color: #333;
+    }
+
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      transition: 0.3s;
+    }
+
+    .modal-content input:focus,
+    .modal-content textarea:focus {
+      border-color: #4e2d2d;
+      box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+      outline: none;
+    }
+
+    .modal-content button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(270deg, #795f5f, #f94d6a, #09bb30);
+      background-size: 400% 400%;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+      animation: buttonBG 5s linear infinite;
+    }
+
+    .modal-content button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: 0.5s;
+    }
+
+    .modal-content button:hover::after {
+      left: 0;
+    }
+
+    .modal-content button:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes buttonBG {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* ---------------- PARTICLES ---------------- */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #ffd700;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: floatParticle 5s linear infinite;
+    }
+
+    @keyframes floatParticle {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-400px) translateX(50px) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    /* ---------------- Floating Alert ---------------- */
+    #alert {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4BB543;
+      color: rgb(129, 116, 116);
+      padding: 15px 25px;
+      border-radius: 50px;
+      display: none;
+      z-index: 2000;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img src="imges/logo2.html" alt="Logo">Jensen Decors</a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about2.html">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categories</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="metal wall art.html">Metal Wall Art</a></li>
+              <li><a class="dropdown-item" href="photo frame art.html">Photo Frame Art</a></li>
+              <li><a class="dropdown-item" href="mirror.html">Mirror Art</a></li>
+              <li><a class="dropdown-item" href="wall shelves.html">Wall Shelves</a></li>
+              <li><a class="dropdown-item" href="wall mounted animal.html">Wall Mounted Animals</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="contactus.html">Contact</a></li>
+        </ul>
+         <!-- Sign Up Button -->
+          <li class="nav-item"><button class="signup-btn btn btn-gold" id="openModal">Sign Up</button></li>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Transform Your Space with Style</h1>
+      <p>Elegant designs, modern décor, and timeless beauty — all in one place.</p>
+      <a href="#categories" class="btn btn-gold">Explore Now</a>
+    </div>
+  </section>
+    <!-- ---------------- MODAL + PARTICLES ---------------- -->
+  <div class="modal" id="signupModal">
+    <div class="particles" id="particlesContainer"></div>
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h2>Sign Up</h2>
+      <form id="signupForm">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="categories" id="categories">
+    <h2 class="section-title">Our Categories</h2>
+    <div class="container">
+      <div class="row g-4" style="margin-bottom:0;">
+        <!-- 10 cards -->
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card"><img src="imges/shelvs2.html" alt="">
+            <div class="card-body">
+              <h5>product 1</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card"><img src="imges/shelvs.html" alt="">
+            <div class="card-body">
+              <h5>product 2</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card"><img src="imges/product9.png.png" alt="">
+            <div class="card-body">
+              <h5>product 3</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card"><img src="imges/product8.png.png" alt="">
+            <div class="card-body">
+              <h5>product 4</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card"><img src="imges/product7.png.png" alt="">
+            <div class="card-body">
+              <h5>product5</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card"><img src="imges/product6.png.png" alt="">
+            <div class="card-body">
+              <h5>product 6</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card"><img src="imges/product5.png.png" alt="">
+            <div class="card-body">
+              <h5>product 7</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card"><img src="imges/product4.png.png" alt="">
+            <div class="card-body">
+              <h5>product 8</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card"><img src="imges/product3.png.png" alt="">
+            <div class="card-body">
+              <h5>product 9</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <div class="card"><img src="imges/product2.png.png" alt="">
+            <div class="card-body">
+              <h5>product 10</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TRENDING STYLES -->
+  <section class="trending">
+    <h2 class="section-title">Trending Styles</h2>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card"><img src="imges/hero2.png" alt="">
+            <div class="card-body">
+              <h5>Modern Wall Art</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card"><img src="imges/bba.html.jpg" alt="">
+            <div class="card-body">
+              <h5>Luxury Decor</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card"><img src="imges/abb.html.jpg" alt="">
+            <div class="card-body">
+              <h5>Creative Designs</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews">
+    <h2 class="section-title">Customer Reviews</h2>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="review-box">
+            <p>"Amazing quality and fast delivery!"</p>
+            <h5>- Sarah Khan</h5>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="review-box">
+            <p>"My living room looks stunning now."</p>
+            <h5>- Ali Raza</h5>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="review-box">
+            <p>"Highly recommended! Beautiful artwork."</p>
+            <h5>- Zoya Malik</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>About Us</h5>
+          <p>Jensen Decors brings elegance & modern design to your space with premium wall décor and artistic style.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Links</h5><a href="index.html">Home</a><br><a href="about.html">About</a><br><a href="slidder.html">Categories</a><br><a
+            href="#">Contact</a>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact</h5>
+          <p>Email: info@jensendecors.com<br>Phone: +92 300 1234567</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Jensen Decors. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTop">↑</button>
+<div id="alert">Sign Up Successfully!</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Navbar scroll
+    window.addEventListener("scroll", function () {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) navbar.classList.add("scrolled");
+      else navbar.classList.remove("scrolled");
+    });
+    // Highlight current page link
+document.querySelectorAll('.nav-link').forEach(link => {
+  if (link.href === window.location.href) {
+    link.classList.add('active-page');
+  }
+});
+
+    // Categories animation
+    const cards = document.querySelectorAll(".categories .card");
+    window.addEventListener("scroll", () => {
+      cards.forEach(card => {
+        const cardPos = card.getBoundingClientRect().top;
+        const screenPos = window.innerHeight - 100;
+        if (cardPos < screenPos) card.classList.add("show");
+      });
+    });
+
+    // Back to top
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      backToTop.style.display = window.scrollY > 500 ? "block" : "none";
+    });
+    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+       // Modal open/close
+    const modal = document.getElementById('signupModal');
+    const openBtn = document.getElementById('openModal');
+    const closeBtn = document.getElementById('closeModal');
+    openBtn.addEventListener('click', () => modal.classList.add('show'));
+    closeBtn.addEventListener('click', () => modal.classList.remove('show'));
+    window.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('show'); });
+
+    // Form submit
+    const form = document.getElementById('signupForm');
+    const alertBox = document.getElementById('alert');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (name === '' || email === '' || password === '' || message === '') {
+        alert('Please fill all fields!');
+        return;
+      }
+      alertBox.style.display = 'block';
+      setTimeout(() => alertBox.style.display = 'none', 2500);
+      form.reset();
+      modal.classList.remove('show');
+    });
+
+    // ---------------- Particle Sparkles ----------------
+    const particlesContainer = document.getElementById('particlesContainer');
+    const particlesCount = 30;
+    for (let i = 0; i < particlesCount; i++) {
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = Math.random() * 100 + '%';
+      p.style.width = (Math.random() * 4 + 2) + 'px';
+      p.style.height = (Math.random() * 4 + 2) + 'px';
+      p.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      particlesContainer.appendChild(p);
+    }
+  </script>
+</body>
+
+</html>

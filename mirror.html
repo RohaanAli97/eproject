@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mirror Art Collection</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #ffffff, #f0f0f0);
+      color: #111;
+      overflow-x: hidden;
+    }
+    /* -------- NAVBAR -------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: transparent;
+      position: absolute;
+      padding: 20px 0;
+      z-index: 1000;
+      transition: 0.4s;
+    }
+
+    .navbar.scrolled {
+      background: #fff !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 10px 0;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: #d4af37 !important;
+      font-family: cursive;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand img {
+      height: 60px;
+      width: 60px;
+      margin-right: 10px;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+
+    .navbar-brand img:hover {
+      transform: scale(1.1);
+    }
+
+    .nav-link {
+      /* color: #fff !important; */
+      font-weight: 600;
+      margin: 0 10px;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .navbar.scrolled .nav-link {
+      color: #000 !important;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #d4af37;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: #d4af37 !important;
+    }
+     /* ACTIVE LINK */
+    .nav-link.active {
+      color: #d4af37 !important;
+    }
+
+    .nav-link.active::after {
+      width: 100%;
+    }
+/* -------- ACTIVE LINK HIGHLIGHT -------- */
+.nav-link.active-page {
+  color: #d4af37 !important;
+}
+
+.nav-link.active-page::after {
+  width: 100%;
+  background: #d4af37;
+}
+
+    h1.page-title {
+      text-align: center;
+      margin: 60px 0 30px 0;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #111;
+      text-shadow: 0 0 10px rgba(0,0,0,0.2);
+      margin-top: 10%;
+      animation: softGlow 3s ease-in-out infinite alternate;
+      font-style: italic;
+    }
+
+    @keyframes softGlow {
+      from { text-shadow: 0 0 5px rgba(0,0,0,0.1); }
+      to { text-shadow: 0 0 20px rgba(0,0,0,0.3); }
+    }
+
+    /* --- Card Style --- */
+    .mirror-card {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      transition: 0.4s ease;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .mirror-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* --- Overlay --- */
+    .mirror-card .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(17, 17, 17, 0.85);
+      color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .mirror-card:hover .overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mirror-card .overlay h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .mirror-card .overlay p {
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      color: #ddd;
+    }
+
+    .mirror-card .overlay .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #ffd700;
+    }
+
+    .add-to-cart {
+      padding: 8px 18px;
+      border: 1.5px solid #fff;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 25px;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .add-to-cart:hover {
+      background: #fff;
+      color: #111;
+      transform: scale(1.05);
+    }
+
+    .mirror-card h3,
+    .mirror-card p,
+    .mirror-card .price {
+      padding: 10px;
+      margin: 0;
+    }
+
+    .mirror-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #111;
+      margin-top: 10px;
+    }
+
+    .mirror-card p {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 5px;
+    }
+
+    .mirror-card .price {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #111;
+      margin-bottom: 15px;
+    }
+
+    .mirror-card:hover {
+      transform: scale(1.03);
+    }
+  </style>
+</head>
+
+<body>
+<!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img src="imges/logo2.html" alt="Logo">Jensen Decors</a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categories</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="metal wall art.html">Metal Wall Art</a></li>
+              <li><a class="dropdown-item" href="photo frame art.html">Photo Frame Art</a></li>
+              <li><a class="dropdown-item" href="mirror.html">Mirror Art</a></li>
+              <li><a class="dropdown-item" href="wall shelves.html">Wall Shelves</a></li>
+              <li><a class="dropdown-item" href="wall mounted animal.html">Wall Mounted Animals</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <h1 class="page-title">Mirror Art Collection</h1>
+
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <!-- All cards remain exactly as you gave -->
+      <!-- Card 1 -->
+      <div class="col-md-4 col-sm-6">
+        <div class="mirror-card">
+          <img src="img/pexels-magda-ehlers-pexels-1771748.jpg" alt="Mirror 1">
+          <h3>Modern Crystal Mirror</h3>
+          <p>Elegant mirror with stunning reflective edges.</p>
+          <div class="price">$50</div>
+          <div class="overlay">
+            <h3>Modern Crystal Mirror</h3>
+            <p>Elegant mirror with stunning reflective edges that elevate your room’s style.</p>
+            <div class="price">$50</div>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+ <!-- Card 2 -->
+      <div class="col-md-4 col-sm-6">
+        <div class="mirror-card">
+          <img src="img/pexels-john-zook-2388999-4030371 (1).jpg" alt="Mirror 2">
+          <h3>Golden Edge Mirror</h3>
+          <p>Luxury gold frame mirror.</p>
+          <div class="price">$80</div>
+          <div class="overlay">
+            <h3>Golden Edge Mirror</h3>
+            <p>Luxury gold frame mirror perfect for adding warmth and elegance to your walls.</p>
+            <div class="price">$80</div>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-md-4 col-sm-6">
+        <div class="mirror-card">
+          <img src="img/pexels-cottonbro-5138199.jpg" alt="Mirror 3">
+          <h3>Artistic Frame Mirror</h3>
+          <p>Unique artistic frame design.</p>
+          <div class="price">$120</div>
+          <div class="overlay">
+            <h3>Artistic Frame Mirror</h3>
+            <p>Unique artistic frame that turns your wall into a masterpiece of light and style.</p>
+            <div class="price">$120</div>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-md-4 col-sm-6">
+        <div class="mirror-card">
+          <img src="img/pexels-anna-pou-8132441.jpg" alt="Mirror 4">
+          <h3>Round Decorative Mirror</h3>
+          <p>Perfect modern circular mirror.</p>
+          <div class="price">$65</div>
+          <div class="overlay">
+            <h3>Round Decorative Mirror</h3>
+            <p>Perfect circle mirror with modern touch for a sleek interior finish.</p>
+            <div class="price">$65</div>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="col-md-4 col-sm-6">
+        <div class="mirror-card">
+          <img src="img/pexels-heyho-6301167.jpg" alt="Mirror 5">
+          <h3>Luxury Wall Mirror</h3>
+          <p>Elegant large wall piece.</p>
+          <div class="price">$110</div>
+          <div class="overlay">
+            <h3>Luxury Wall Mirror</h3>
+            <p>Large statement piece that reflects elegance and timeless luxury.</p>
+            <div class="price">$110</div>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="col-md-4 col-sm-6">
+        <div class="mirror-card">
+          <img src="img/pexels-tenzen-fawkes-9740-67105.jpg" alt="Mirror 6">
+          <h3>Geometric Mirror Design</h3>
+          <p>Creative geometric wall art.</p>
+          <div class="price">$95</div>
+          <div class="overlay">
+            <h3>Geometric Mirror Design</h3>
+            <p>Creative geometric shape mirror for a contemporary modern interior.</p>
+            <div class="price">$95</div>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+<!-- Card 7 -->
+      <div class="col-md-4 col-sm-6">
+        <div class="mirror-card">
+          <img src="imges/mirror1.html.jpg" alt="Mirror 6">
+          <h3>Geometric Mirror Design</h3>
+          <p>Creative geometric wall art.</p>
+          <div class="price">$95</div>
+          <div class="overlay">
+            <h3>Geometric Mirror Design</h3>
+            <p>Creative geometric shape mirror for a contemporary modern interior.</p>
+            <div class="price">$95</div>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <!-- Card 8 -->
+      <div class="col-md-4 col-sm-6">
+        <div class="mirror-card">
+          <img src="imges/mirror2.html.jpg" alt="Mirror 6">
+          <h3>Geometric Mirror Design</h3>
+          <p>Creative geometric wall art.</p>
+          <div class="price">$95</div>
+          <div class="overlay">
+            <h3>Geometric Mirror Design</h3>
+            <p>Creative geometric shape mirror for a contemporary modern interior.</p>
+            <div class="price">$95</div>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <!-- Card 9 -->
+      <div class="col-md-4 col-sm-6">
+        <div class="mirror-card">
+          <img src="imges/mirror3.html.jpg" alt="Mirror 6">
+          <h3>Geometric Mirror Design</h3>
+          <p>Creative geometric wall art.</p>
+          <div class="price">$95</div>
+          <div class="overlay">
+            <h3>Geometric Mirror Design</h3>
+            <p>Creative geometric shape mirror for a contemporary modern interior.</p>
+            <div class="price">$95</div>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <!-- Card 10 -->
+      <div class="col-md-4 col-sm-6">
+        <div class="mirror-card">
+          <img src="imges/mirror4.html.jpg" alt="Mirror 6">
+          <h3>Geometric Mirror Design</h3>
+          <p>Creative geometric wall art.</p>
+          <div class="price">$95</div>
+          <div class="overlay">
+            <h3>Geometric Mirror Design</h3>
+            <p>Creative geometric shape mirror for a contemporary modern interior.</p>
+            <div class="price">$95</div>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- ✅ Dropdown on hover -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const dropdown = document.querySelectorAll(".nav-item.dropdown");
+      dropdown.forEach(item => {
+        item.addEventListener("mouseenter", () => {
+          const menu = item.querySelector(".dropdown-menu");
+          menu.classList.add("show");
+        });
+        item.addEventListener("mouseleave", () => {
+          const menu = item.querySelector(".dropdown-menu");
+          menu.classList.remove("show");
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

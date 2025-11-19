@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minimalist Product Grid</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #f7f7f7;
+    }
+        /* -------- NAVBAR -------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: transparent;
+      padding: 20px 0;
+      z-index: 1000;
+      transition: 0.4s;
+    }
+
+    .navbar.scrolled {
+      background: #fff !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 10px 0;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: #d4af37 !important;
+      font-family: cursive;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand img {
+      height: 60px;
+      width: 60px;
+      margin-right: 10px;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+
+    .navbar-brand img:hover {
+      transform: scale(1.1);
+    }
+
+    .nav-link {
+      color: #fff !important;
+      font-weight: 600;
+      margin: 0 10px;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .navbar.scrolled .nav-link {
+      color: #000 !important;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #d4af37;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: #d4af37 !important;
+    }
+     /* ACTIVE LINK */
+    .nav-link.active {
+      color: #d4af37 !important;
+    }
+
+    .nav-link.active::after {
+      width: 100%;
+    }
+/* -------- ACTIVE LINK HIGHLIGHT -------- */
+.nav-link.active-page {
+  color: #d4af37 !important;
+}
+
+.nav-link.active-page::after {
+  width: 100%;
+  background: #d4af37;
+}
+
+    .product-card {
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(40px) scale(0.9);
+    }
+    .product-card.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    .product-card img {
+      display: block;
+    }
+  </style>
+</head>
+<!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img src="imges/logo2.html" alt="Logo">Jensen Decors</a>
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categories</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="metal wall art.html">Metal Wall Art</a></li>
+              <li><a class="dropdown-item" href="glass wall art.html">Wall Papers</a></li>
+              <li><a class="dropdown-item" href="photo frame art.html">Photo Frame Art</a></li>
+              <li><a class="dropdown-item" href="mirror.html">Mirror Art</a></li>
+              <li><a class="dropdown-item" href="slidder.html">Wall Shelves</a></li>
+              <li><a class="dropdown-item" href="#">Wall Mounted Animals</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<body class="p-4 md:p-10">
+  <div id="app" class="max-w-7xl mx-auto">
+    <h1 class="text-4xl font-light text-center mb-12 mt-4 text-gray-800 tracking-wider">
+      Products
+    </h1>
+
+    <!-- Product Grid -->
+    <div id="product-list" class="grid gap-8 sm:gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+      
+      <!-- Product 1 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden shadow-md group flex flex-col h-full"
+           data-product-id="1" onclick="handleProductDetails(this)">
+        <div class="relative bg-gray-50 flex items-center justify-center p-6 flex-grow">
+          <img src="imges/product1.png.png"
+               alt="Hauteville Concrete Rocking Chair"
+               class="w-full h-auto object-cover rounded-md block">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 
+                      transition-all duration-300 flex items-center justify-center z-10">
+            <button onclick="event.stopPropagation(); handleAddToCart(1, 'Hauteville Concrete Rocking Chair')" 
+                    class="opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 
+                           transition-all duration-300 ease-in-out bg-white text-gray-800 font-semibold text-sm tracking-wider 
+                           px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 active:bg-gray-200 
+                           focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="p-4 text-center mt-auto">
+          <p class="uppercase text-sm tracking-widest font-medium text-gray-800 mt-2">
+         Forest Whisper
+          </p>
+          <p class="text-gray-500 text-base mt-1">$350</p>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden shadow-md group flex flex-col h-full"
+           data-product-id="2" onclick="handleProductDetails(this)">
+        <div class="relative bg-gray-50 flex items-center justify-center p-6 flex-grow">
+          <span class="absolute top-4 left-4 z-20 bg-yellow-400 text-gray-900 text-xs font-semibold px-3 py-1 rounded-full uppercase">Sale</span>
+          <img src="imges/product2.png.png"
+               alt="Pavilion Speaker"
+               class="w-full h-auto object-cover rounded-md block">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 
+                      transition-all duration-300 flex items-center justify-center z-10">
+            <button onclick="event.stopPropagation(); handleAddToCart(2, 'Pavilion Speaker')" 
+                    class="opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 
+                           transition-all duration-300 ease-in-out bg-white text-gray-800 font-semibold text-sm tracking-wider 
+                           px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 active:bg-gray-200 
+                           focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="p-4 text-center mt-auto">
+          <p class="uppercase text-sm tracking-widest font-medium text-gray-800 mt-2">
+         City Lights Dream
+          </p>
+          <p class="text-gray-500 text-base mt-1">$600</p>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden shadow-md group flex flex-col h-full"
+           data-product-id="3" onclick="handleProductDetails(this)">
+        <div class="relative bg-gray-50 flex items-center justify-center p-6 flex-grow">
+          <img src="imges/product3.png.png"
+               alt="Ligomancer"
+               class="w-full h-auto object-cover rounded-md block">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 
+                      transition-all duration-300 flex items-center justify-center z-10">
+            <button onclick="event.stopPropagation(); handleAddToCart(3, 'Ligomancer')" 
+                    class="opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 
+                           transition-all duration-300 ease-in-out bg-white text-gray-800 font-semibold text-sm tracking-wider 
+                           px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 active:bg-gray-200 
+                           focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="p-4 text-center mt-auto">
+          <p class="uppercase text-sm tracking-widest font-medium text-gray-800 mt-2">
+            Cosmic Bloom
+          </p>
+          <p class="text-gray-500 text-base mt-1">$780</p>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden shadow-md group flex flex-col h-full"
+           data-product-id="4" onclick="handleProductDetails(this)">
+        <div class="relative bg-gray-50 flex items-center justify-center p-6 flex-grow">
+          <img src="imges/product4.png.png"
+               alt="Alato Cabinet"
+               class="w-full h-auto object-cover rounded-md block">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 
+                      transition-all duration-300 flex items-center justify-center z-10">
+            <button onclick="event.stopPropagation(); handleAddToCart(4, 'Alato Cabinet')" 
+                    class="opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 
+                           transition-all duration-300 ease-in-out bg-white text-gray-800 font-semibold text-sm tracking-wider 
+                           px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 active:bg-gray-200 
+                           focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="p-4 text-center mt-auto">
+          <p class="uppercase text-sm tracking-widest font-medium text-gray-800 mt-2">
+          Mountain Solitude
+          </p>
+          <p class="text-gray-500 text-base mt-1">$800</p>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden shadow-md group flex flex-col h-full"
+           data-product-id="5" onclick="handleProductDetails(this)">
+        <div class="relative bg-gray-50 flex items-center justify-center p-6 flex-grow">
+          <img src="imges/product5.png.png"
+               alt="Earing Wireless"
+               class="w-full h-auto object-cover rounded-md block">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 
+                      transition-all duration-300 flex items-center justify-center z-10">
+            <button onclick="event.stopPropagation(); handleAddToCart(5, 'Earing Wireless')" 
+                    class="opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 
+                           transition-all duration-300 ease-in-out bg-white text-gray-800 font-semibold text-sm tracking-wider 
+                           px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 active:bg-gray-200 
+                           focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="p-4 text-center mt-auto">
+          <p class="uppercase text-sm tracking-widest font-medium text-gray-800 mt-2">
+            Whale Song
+          </p>
+          <p class="text-gray-500 text-base mt-1">$100</p>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden shadow-md group flex flex-col h-full"
+           data-product-id="6" onclick="handleProductDetails(this)">
+        <div class="relative bg-gray-50 flex items-center justify-center p-6 flex-grow">
+          <img src="imges/product6.png.png"
+               alt="Sculptural Coffee Table"
+               class="w-full h-auto object-cover rounded-md block">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 
+                      transition-all duration-300 flex items-center justify-center z-10">
+            <button onclick="event.stopPropagation(); handleAddToCart(6, 'Sculptural Coffee Table')" 
+                    class="opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 
+                           transition-all duration-300 ease-in-out bg-white text-gray-800 font-semibold text-sm tracking-wider 
+                           px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 active:bg-gray-200 
+                           focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="p-4 text-center mt-auto">
+          <p class="uppercase text-sm tracking-widest font-medium text-gray-800 mt-2">
+          Forest Whisper v2
+          </p>
+          <p class="text-gray-500 text-base mt-1">$960</p>
+        </div>
+      </div>
+
+      <!-- ✅ Product 7 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden shadow-md group flex flex-col h-full"
+           data-product-id="7" onclick="handleProductDetails(this)">
+        <div class="relative bg-gray-50 flex items-center justify-center p-6 flex-grow">
+          <img src="imges/product7.png.png"
+               alt="Modern Lamp"
+               class="w-full h-auto object-cover rounded-md block">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center z-10">
+            <button onclick="event.stopPropagation(); handleAddToCart(7, 'Modern Lamp')" 
+                    class="opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 ease-in-out bg-white text-gray-800 font-semibold text-sm tracking-wider px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="p-4 text-center mt-auto">
+          <p class="uppercase text-sm tracking-widest font-medium text-gray-800 mt-2">Stained Glass Bloom</p>
+          <p class="text-gray-500 text-base mt-1">$250</p>
+        </div>
+      </div>
+
+      <!-- ✅ Product 8 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden shadow-md group flex flex-col h-full"
+           data-product-id="8" onclick="handleProductDetails(this)">
+        <div class="relative bg-gray-50 flex items-center justify-center p-6 flex-grow">
+          <img src="imges/product8.png.png"
+               alt="Nordic Chair"
+               class="w-full h-auto object-cover rounded-md block">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center z-10">
+            <button onclick="event.stopPropagation(); handleAddToCart(8, 'Nordic Chair')" 
+                    class="opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 ease-in-out bg-white text-gray-800 font-semibold text-sm tracking-wider px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="p-4 text-center mt-auto">
+          <p class="uppercase text-sm tracking-widest font-medium text-gray-800 mt-2">Celestial Koi</p>
+          <p class="text-gray-500 text-base mt-1">$420</p>
+        </div>
+      </div>
+
+      <!-- ✅ Product 9 -->
+      <div class="product-card bg-white rounded-lg overflow-hidden shadow-md group flex flex-col h-full"
+           data-product-id="9" onclick="handleProductDetails(this)">
+        <div class="relative bg-gray-50 flex items-center justify-center p-6 flex-grow">
+          <img src="imges/product9.png.png"
+               alt="Minimal Clock"
+               class="w-full h-auto object-cover rounded-md block">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center z-10">
+            <button onclick="event.stopPropagation(); handleAddToCart(9, 'Minimal Clock')" 
+                    class="opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 ease-in-out bg-white text-gray-800 font-semibold text-sm tracking-wider px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="p-4 text-center mt-auto">
+          <p class="uppercase text-sm tracking-widest font-medium text-gray-800 mt-2">Mystic Depths</p>
+          <p class="text-gray-500 text-base mt-1">$180</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating message box -->
+    <div id="message-box"
+         class="fixed bottom-4 right-4 bg-gray-800 text-white p-3 rounded-lg shadow-xl opacity-0 
+                transition-opacity duration-300 pointer-events-none z-50">
+      <span id="product-title"></span>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cards = document.querySelectorAll(".product-card");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.classList.add("show");
+              }, index * 150);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      cards.forEach((card) => observer.observe(card));
+    });
+
+    function handleMessage(title, type) {
+      const messageBox = document.getElementById("message-box");
+      let messageText;
+      if (type === "add") {
+        messageText = `${title} added to cart!`;
+        messageBox.classList.remove("bg-gray-800");
+        messageBox.classList.add("bg-green-600");
+      } else {
+        messageText = `Viewing details for: ${title}`;
+        messageBox.classList.remove("bg-green-600");
+        messageBox.classList.add("bg-gray-800");
+      }
+      document.getElementById("product-title").textContent = messageText;
+      messageBox.classList.remove("opacity-0", "pointer-events-none");
+      messageBox.classList.add("opacity-100");
+      setTimeout(() => {
+        messageBox.classList.remove("opacity-100");
+        messageBox.classList.add("opacity-0", "pointer-events-none");
+      }, 3000);
+    }
+
+    function handleAddToCart(productId, productTitle) {
+      console.log(`Add to Cart clicked for Product ID ${productId}: ${productTitle}`);
+      handleMessage(productTitle, "add");
+    }
+
+    function handleProductDetails(element) {
+      const titleElement = element.querySelector(".uppercase");
+      const productTitle = titleElement ? titleElement.textContent : "Unknown Product";
+      console.log(`Card clicked for Product Details: ${productTitle}`);
+      handleMessage(productTitle, "details");
+    }
+  </script>
+</body>
+</html>
