@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Photo Frame Art</title>
 
-  <!-- ✅ Bootstrap -->
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     body {
@@ -14,7 +16,7 @@
       background-color: #f7f7f7;
     }
 
-    /* ✅ FIXED NAVBAR */
+
     .navbar {
       background-color: #ffffff !important;
       position: fixed;
@@ -214,6 +216,217 @@
       border-top: 1px solid #444;
       padding-top: 15px;
     }
+    .card button{
+      padding: 10px;
+      border-radius: 30px;
+      background: linear-gradient(40deg,cyan,yellow);
+      transition: all 0.4s ease;
+    }
+    .card button:Hover{
+      padding: 20px;
+    }
+    
+    /* Cart Icon */
+    .cart-icon {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1100;
+      background: #d4af37;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .cart-icon:hover {
+      transform: scale(1.1);
+      background: #c19d2e;
+    }
+
+    .cart-icon i {
+      font-size: 24px;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #ff4757;
+      color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* Cart Drawer */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 380px;
+      height: 100%;
+      background: white;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      z-index: 1200;
+      transition: right 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-drawer.open {
+      right: 0;
+    }
+
+    .cart-header {
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-header h3 {
+      margin: 0;
+      color: #111;
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #777;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 15px;
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-details h4 {
+      margin: 0 0 5px 0;
+      font-size: 16px;
+    }
+
+    .cart-item-details p {
+      margin: 0;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .cart-item-price {
+      font-weight: bold;
+      color: #d4af37;
+    }
+
+    .remove-item {
+      background: none;
+      border: none;
+      color: #ff4757;
+      cursor: pointer;
+      font-size: 18px;
+      align-self: flex-start;
+    }
+
+    .cart-footer {
+      padding: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 12px;
+      background: #d4af37;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .checkout-btn:hover {
+      background: #c19d2e;
+    }
+
+    /* Overlay for cart drawer */
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1199;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .cart-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4CAF50;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 1300;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -249,84 +462,114 @@
     </div>
   </nav>
   
+  <!-- Cart Icon -->
+  <div class="cart-icon">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count">0</span>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items">
+      <!-- Cart items will be added here dynamically -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span class="total-price">$0</span>
+      </div>
+      <button class="checkout-btn">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Cart Overlay -->
+  <div class="cart-overlay"></div>
+
+  <!-- Toast Notification -->
+  <div class="toast">Successfully checked out!</div>
+  
   <!-- ✅ Spacing below navbar -->
   <div style="height: 100px;"></div>
   <h1 class="text-3xl font-bold text-center mb-8">Photo Frame Art</h1>
   <div class="wallpaper-container">
  <!-- 10 wallpaper cards, 3 with Sale badge -->
-    <div class="card" data-title="Wallpaper 1" data-img="imges/wallpaper1.png.png" data-price="Rs 1500"
-      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+    <div class="card" data-title="Vintage Wood Frame" data-img="imges/photo frame6.jpeg" data-price="1500"
+      data-specs="Elegant vintage wood frame with classic design." data-qty="5">
       <div class="sale-badge">Sale</div>
       <img src="imges/photo frame6.jpeg">
-      <h3>Wallpaper 1</h3>
+      <h3>Vintage Wood Frame</h3>
       <p>Quantity: 5</p>
-      <button class="view-btn">View Details</button>
+      <button class="add-to-cart-btn" data-id="1" data-name="Vintage Wood Frame" data-price="1500" data-img="imges/photo frame6.jpeg">Add To Cart</button>
     </div>
-    <div class="card" data-title="Wallpaper 2" data-img="imges/wallpaper2.png.png" data-price="Rs 1600"
-      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+    <div class="card" data-title="Modern Metal Frame" data-img="imges/photo frame.10jpeg" data-price="1600"
+      data-specs="Sleek modern metal frame with minimalist design." data-qty="5">
       
       <img src="imges/photo frame.10jpeg">
-      <h3>Wallpaper 2</h3>
+      <h3>Modern Metal Frame</h3>
       <p>Quantity: 5</p>
-      <button class="view-btn">View Details</button>
+      <button class="add-to-cart-btn" data-id="2" data-name="Modern Metal Frame" data-price="1600" data-img="imges/photo frame.10jpeg">Add To Cart</button>
     </div>
-    <div class="card" data-title="Wallpaper 3" data-img="imges/wallpaper3.png.png" data-price="Rs 1700"
-      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+    <div class="card" data-title="Ornate Gold Frame" data-img="imges/photo frame.11jpeg" data-price="1700"
+      data-specs="Luxurious ornate gold frame with intricate details." data-qty="5">
       <div class="sale-badge">Sale</div>
       <img src="imges/photo frame.11jpeg">
-      <h3>Wallpaper 3</h3>
+      <h3>Ornate Gold Frame</h3>
       <p>Quantity: 5</p>
-      <button class="view-btn">View Details</button>
+    <button class="add-to-cart-btn" data-id="3" data-name="Ornate Gold Frame" data-price="1700" data-img="imges/photo frame.11jpeg">Add To Cart</button>
     </div>
-    <div class="card" data-title="Wallpaper 4" data-img="imges/wallpaper4.png.png" data-price="Rs 1800"
-      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+    <div class="card" data-title="Minimalist Black Frame" data-img="imges/photo frame.7jpeg" data-price="1800"
+      data-specs="Clean minimalist black frame for modern interiors." data-qty="5">
       <img src="imges/photo frame.7jpeg">
-      <h3>Wallpaper 4</h3>
+      <h3>Minimalist Black Frame</h3>
       <p>Quantity: 5</p>
-      <button class="view-btn">View Details</button>
+   <button class="add-to-cart-btn" data-id="4" data-name="Minimalist Black Frame" data-price="1800" data-img="imges/photo frame.7jpeg">Add To Cart</button>
     </div>
-    <div class="card" data-title="Wallpaper 5" data-img="imges/wallpaper5.png.png" data-price="Rs 1900"
-      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+    <div class="card" data-title="Rustic Wood Frame" data-img="imges/photo frame.8jpeg" data-price="1900"
+      data-specs="Charming rustic wood frame with natural finish." data-qty="5">
       <img src="imges/photo frame.8jpeg">
       <div class="sale-badge">Sale</div>
-      <h3>Wallpaper 5</h3>
+      <h3>Rustic Wood Frame</h3>
       <p>Quantity: 5</p>
-      <button class="view-btn">View Details</button>
+      <button class="add-to-cart-btn" data-id="5" data-name="Rustic Wood Frame" data-price="1900" data-img="imges/photo frame.8jpeg">Add To Cart</button>
     </div>
-    <div class="card" data-title="Wallpaper 6" data-img="imges/wallpaper6.png.png" data-price="Rs 2000"
-      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+    <div class="card" data-title="Silver Gallery Frame" data-img="imges/photo frame.9jpeg" data-price="2000"
+      data-specs="Elegant silver gallery frame for professional displays." data-qty="5">
       <img src="imges/photo frame.9jpeg">
-      <h3>Wallpaper 6</h3>
+      <h3>Silver Gallery Frame</h3>
       <p>Quantity: 5</p>
-      <button class="view-btn">View Details</button>
+      <button class="add-to-cart-btn" data-id="6" data-name="Silver Gallery Frame" data-price="2000" data-img="imges/photo frame.9jpeg">Add To Cart</button>
     </div>
-    <div class="card" data-title="Wallpaper 7" data-img="imges/wallpaper7.png.png" data-price="Rs 2100"
-      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+    <div class="card" data-title="Antique Bronze Frame" data-img="imges/photo frame.jpeg" data-price="2100"
+      data-specs="Classic antique bronze frame with vintage appeal." data-qty="5">
       <img src="imges/photo frame.jpeg">
-      <h3>Wallpaper 7</h3>
+      <h3>Antique Bronze Frame</h3>
       <p>Quantity: 5</p>
-      <button class="view-btn">View Details</button>
+   <button class="add-to-cart-btn" data-id="7" data-name="Antique Bronze Frame" data-price="2100" data-img="imges/photo frame.jpeg">Add To Cart</button>
     </div>
-    <div class="card" data-title="Wallpaper 8" data-img="imges/wallpaper8.png.png" data-price="Rs 2200"
-      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+    <div class="card" data-title="White Gallery Frame" data-img="imges/photo frame2.jpeg" data-price="2200"
+      data-specs="Crisp white gallery frame for clean modern look." data-qty="5">
       <img src="imges/photo frame2.jpeg">
-      <h3>Wallpaper 8</h3>
+      <h3>White Gallery Frame</h3>
       <p>Quantity: 5</p>
-      <button class="view-btn">View Details</button>
+     <button class="add-to-cart-btn" data-id="8" data-name="White Gallery Frame" data-price="2200" data-img="imges/photo frame2.jpeg">Add To Cart</button>
     </div>
-    <div class="card" data-title="Wallpaper 9" data-img="imges/wallpaper9.png.png" data-price="Rs 2300"
-      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+    <div class="card" data-title="Distressed Wood Frame" data-img="imges/photo frame4.jpeg" data-price="2300"
+      data-specs="Vintage distressed wood frame with character." data-qty="5">
       <img src="imges/photo frame4.jpeg">
-      <h3>Wallpaper 9</h3>
+      <h3>Distressed Wood Frame</h3>
       <p>Quantity: 5</p>
-      <button class="view-btn">View Details</button>
+   <button class="add-to-cart-btn" data-id="9" data-name="Distressed Wood Frame" data-price="2300" data-img="imges/photo frame4.jpeg">Add To Cart</button>
     </div>
-    <div class="card" data-title="Wallpaper 10" data-img="imges/wallpaper10.png.png" data-price="Rs 2400"
-      data-specs="Elegant pastel wallpaper, smooth finish." data-qty="5">
+    <div class="card" data-title="Contemporary Metal Frame" data-img="imges/photo frame5.jpeg" data-price="2400"
+      data-specs="Sleek contemporary metal frame with geometric design." data-qty="5">
       <img src="imges/photo frame5.jpeg">
-      <h3>Wallpaper 10</h3>
+      <h3>Contemporary Metal Frame</h3>
       <p>Quantity: 5</p>
-      <button class="view-btn">View Details</button>
+<button class="add-to-cart-btn" data-id="10" data-name="Contemporary Metal Frame" data-price="2400" data-img="imges/photo frame5.jpeg">Add To Cart</button>
     </div>
 </div>
   
@@ -368,6 +611,132 @@
       const cards = document.querySelectorAll('.card');
       cards.forEach((card, index) => {
         setTimeout(() => { card.classList.add('show'); }, index * 150);
+      });
+
+      // Cart functionality
+      const cartIcon = document.querySelector('.cart-icon');
+      const cartDrawer = document.querySelector('.cart-drawer');
+      const closeCart = document.querySelector('.close-cart');
+      const cartOverlay = document.querySelector('.cart-overlay');
+      const cartItems = document.querySelector('.cart-items');
+      const cartCount = document.querySelector('.cart-count');
+      const totalPrice = document.querySelector('.total-price');
+      const checkoutBtn = document.querySelector('.checkout-btn');
+      const toast = document.querySelector('.toast');
+      const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
+
+      let cart = [];
+
+      // Open cart drawer
+      cartIcon.addEventListener('click', () => {
+        cartDrawer.classList.add('open');
+        cartOverlay.classList.add('active');
+      });
+
+      // Close cart drawer
+      closeCart.addEventListener('click', () => {
+        cartDrawer.classList.remove('open');
+        cartOverlay.classList.remove('active');
+      });
+
+      cartOverlay.addEventListener('click', () => {
+        cartDrawer.classList.remove('open');
+        cartOverlay.classList.remove('active');
+      });
+
+      // Add to cart
+      addToCartBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const name = btn.getAttribute('data-name');
+          const price = parseFloat(btn.getAttribute('data-price'));
+          const img = btn.getAttribute('data-img');
+
+          // Check if item already exists in cart
+          const existingItem = cart.find(item => item.id === id);
+          
+          if (existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            cart.push({
+              id,
+              name,
+              price,
+              img,
+              quantity: 1
+            });
+          }
+
+          updateCart();
+          
+          // Show cart drawer after adding item
+          cartDrawer.classList.add('open');
+          cartOverlay.classList.add('active');
+        });
+      });
+
+      // Remove item from cart
+      function removeFromCart(id) {
+        cart = cart.filter(item => item.id !== id);
+        updateCart();
+      }
+
+      // Update cart UI
+      function updateCart() {
+        cartItems.innerHTML = '';
+        let count = 0;
+        let total = 0;
+
+        cart.forEach(item => {
+          count += item.quantity;
+          total += item.price * item.quantity;
+
+          const cartItem = document.createElement('div');
+          cartItem.className = 'cart-item';
+          cartItem.innerHTML = `
+            <img src="${item.img}" alt="${item.name}">
+            <div class="cart-item-details">
+              <h4>${item.name}</h4>
+              <p class="cart-item-price">Rs ${item.price} x ${item.quantity}</p>
+            </div>
+            <button class="remove-item" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+          `;
+          cartItems.appendChild(cartItem);
+        });
+
+        cartCount.textContent = count;
+        totalPrice.textContent = `Rs ${total.toFixed(2)}`;
+
+        // Add event listeners to remove buttons
+        const removeButtons = document.querySelectorAll('.remove-item');
+        removeButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            removeFromCart(id);
+          });
+        });
+      }
+
+      // Checkout
+      checkoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) {
+          alert('Your cart is empty!');
+          return;
+        }
+
+        // Show success message
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3000);
+
+        // Clear cart
+        cart = [];
+        updateCart();
+        
+        // Close cart drawer
+        cartDrawer.classList.remove('open');
+        cartOverlay.classList.remove('active');
       });
     });
   </script>
